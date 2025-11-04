@@ -79,13 +79,31 @@ All colors MUST be HSL.
 
   /* Ensure SVG icons are visible and properly rendered */
   svg {
-    display: inline-block;
+    display: inline-block !important;
     vertical-align: middle;
+    width: auto;
+    height: auto;
+    max-width: 100%;
+    max-height: 100%;
+    flex-shrink: 0;
   }
 
   /* Ensure lucide-react icons are visible */
-  [data-lucide] {
-    display: inline-block;
+  [data-lucide],
+  svg[data-lucide] {
+    display: inline-block !important;
+    flex-shrink: 0;
+  }
+
+  /* Ensure all icon containers render properly */
+  [class*="icon"] svg,
+  button svg,
+  .icon svg,
+  * svg {
+    display: inline-block !important;
+    flex-shrink: 0;
+    visibility: visible !important;
+    opacity: 1 !important;
   }
 }
 
