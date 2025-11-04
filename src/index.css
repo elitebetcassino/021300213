@@ -76,6 +76,17 @@ All colors MUST be HSL.
     @apply bg-background text-foreground;
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
   }
+
+  /* Ensure SVG icons are visible and properly rendered */
+  svg {
+    display: inline-block;
+    vertical-align: middle;
+  }
+
+  /* Ensure lucide-react icons are visible */
+  [data-lucide] {
+    display: inline-block;
+  }
 }
 
 @layer utilities {
