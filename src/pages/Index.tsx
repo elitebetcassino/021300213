@@ -45,13 +45,13 @@ const Index = () => {
   ];
 
   const advantages = [
-    { title: "Criar Aposta", icon: <PenLine className="h-8 w-8" /> },
-    { title: "Pagamento Antecipado", icon: <CreditCard className="h-8 w-8" /> },
-    { title: "Apostas Flash", icon: <Zap className="h-8 w-8" /> },
-    { title: "Promoções de Esportes", icon: <Gift className="h-8 w-8" /> },
-    { title: "Quiz Grátis", icon: <Target className="h-8 w-8" /> },
-    { title: "Aposte em e-sports", icon: <Gamepad2 className="h-8 w-8" /> },
-    { title: "Palpite no Futebingo", icon: <Circle className="h-8 w-8" /> },
+    { title: "Criar Aposta", IconComponent: PenLine },
+    { title: "Pagamento Antecipado", IconComponent: CreditCard },
+    { title: "Apostas Flash", IconComponent: Zap },
+    { title: "Promoções de Esportes", IconComponent: Gift },
+    { title: "Quiz Grátis", IconComponent: Target },
+    { title: "Aposte em e-sports", IconComponent: Gamepad2 },
+    { title: "Palpite no Futebingo", IconComponent: Circle },
   ];
 
   return (
@@ -93,9 +93,16 @@ const Index = () => {
 
         {/* Vantagens EliteBet */}
         <Section title="Vantagens EliteBet" icon={<Star className="text-primary fill-primary" />}>
-          {advantages.map((advantage, index) => (
-            <AdvantageCard key={index} {...advantage} />
-          ))}
+          {advantages.map((advantage, index) => {
+            const { IconComponent, ...rest } = advantage;
+            return (
+              <AdvantageCard 
+                key={index} 
+                {...rest} 
+                icon={<IconComponent className="h-8 w-8" />} 
+              />
+            );
+          })}
         </Section>
       </main>
 
