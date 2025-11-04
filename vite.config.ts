@@ -21,35 +21,16 @@ export default defineConfig(({ mode }) => ({
       output: {
         manualChunks: undefined,
       },
-      treeshake: {
-        preset: 'smallest',
-        moduleSideEffects: (id) => {
-          // Preserve lucide-react icons to prevent tree-shaking
-          if (id.includes('lucide-react')) {
-            return true;
-          }
-          return false;
-        },
-      },
     },
     commonjsOptions: {
       include: [/lucide-react/, /node_modules/],
-      transformMixedEsModules: true,
     },
-    // Ensure all modules are properly included
-    target: 'es2020',
-    minify: 'esbuild',
   },
   optimizeDeps: {
     include: ["lucide-react"],
     esbuildOptions: {
       target: 'es2020',
     },
-    force: true,
   },
   assetsInclude: ["**/*.svg"],
-  // Ensure SVG imports work correctly
-  esbuild: {
-    target: 'es2020',
-  },
 }));
