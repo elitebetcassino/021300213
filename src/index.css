@@ -1,0 +1,157 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    /* EliteBet Dark Theme */
+    --background: 214 55% 8%;
+    --foreground: 0 0% 98%;
+
+    --card: 214 50% 12%;
+    --card-foreground: 0 0% 98%;
+
+    --popover: 214 50% 10%;
+    --popover-foreground: 0 0% 98%;
+
+    --primary: 51 100% 50%;
+    --primary-foreground: 214 55% 8%;
+
+    --secondary: 6 78% 52%;
+    --secondary-foreground: 0 0% 98%;
+
+    --muted: 214 40% 18%;
+    --muted-foreground: 0 0% 70%;
+
+    --accent: 51 100% 50%;
+    --accent-foreground: 214 55% 8%;
+
+    --destructive: 6 78% 52%;
+    --destructive-foreground: 0 0% 98%;
+
+    --border: 214 40% 20%;
+    --input: 214 40% 18%;
+    --ring: 51 100% 50%;
+
+    --radius: 0.75rem;
+
+    /* Custom tokens */
+    --gold: 51 100% 50%;
+    --gold-glow: 51 100% 60%;
+    --red-vibrant: 6 78% 52%;
+    --blue-dark: 214 55% 8%;
+    --blue-card: 214 50% 12%;
+    --blue-lighter: 214 40% 18%;
+    
+    /* Gradients */
+    --gradient-gold: linear-gradient(135deg, hsl(51 100% 50%), hsl(45 100% 60%));
+    --gradient-red: linear-gradient(135deg, hsl(6 78% 52%), hsl(0 85% 60%));
+    --gradient-purple: linear-gradient(135deg, hsl(280 70% 50%), hsl(260 70% 60%));
+    --gradient-orange: linear-gradient(135deg, hsl(30 100% 50%), hsl(20 100% 60%));
+    --gradient-blue: linear-gradient(135deg, hsl(214 70% 40%), hsl(200 70% 50%));
+    --gradient-green: linear-gradient(135deg, hsl(140 70% 45%), hsl(120 70% 55%));
+    
+    /* Shadows & Glows */
+    --shadow-gold: 0 10px 40px -10px hsl(51 100% 50% / 0.4);
+    --shadow-card: 0 8px 32px -8px hsl(0 0% 0% / 0.5);
+    --glow-gold: 0 0 24px hsl(51 100% 50% / 0.25);
+    --glow-red: 0 0 24px hsl(6 78% 52% / 0.25);
+    --glow-purple: 0 0 24px hsl(280 70% 50% / 0.25);
+    --glow-orange: 0 0 24px hsl(30 100% 50% / 0.25);
+    --glow-blue: 0 0 24px hsl(214 70% 40% / 0.25);
+    --glow-green: 0 0 24px hsl(140 70% 45% / 0.25);
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+}
+
+@layer utilities {
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Auto carousel animation */
+@keyframes auto-scroll-x {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+@layer utilities {
+  /* Promo marquee animation */
+  @keyframes promo-marquee {
+    0% { transform: translateX(0); }
+    100% { transform: translateX(-50%); }
+  }
+  .promo-marquee {
+    overflow: hidden;
+    position: relative;
+  }
+  .promo-marquee-track {
+    display: flex;
+    width: max-content;
+    animation: promo-marquee 28s linear infinite;
+    will-change: transform;
+  }
+  .promo-marquee:hover .promo-marquee-track {
+    animation-play-state: paused;
+  }
+
+  /* Soft pulse animation for splash logo */
+  @keyframes soft-pulse {
+    0% { transform: scale(1); opacity: 0.95; }
+    50% { transform: scale(1.06); opacity: 1; }
+    100% { transform: scale(1); opacity: 0.95; }
+  }
+  .animate-soft-pulse {
+    animation: soft-pulse 1.4s ease-in-out infinite;
+  }
+
+  .auto-carousel {
+    overflow-x: hidden;
+    overflow-y: visible;
+    position: relative;
+  }
+
+  .auto-carousel-offset {
+    transform: translateX(var(--offset-x, 0));
+    will-change: transform;
+  }
+
+  .auto-carousel-track {
+    display: flex;
+    width: max-content;
+  }
+
+  .auto-carousel-animated {
+    display: flex;
+    animation: auto-scroll-x var(--auto-scroll-duration, 40s) linear infinite;
+    will-change: transform;
+  }
+
+  .auto-carousel:hover .auto-carousel-animated {
+    animation-play-state: paused;
+  }
+}
