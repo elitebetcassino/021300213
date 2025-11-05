@@ -1,5 +1,5 @@
 import { Play } from "lucide-react";
-import { ReactNode, useState } from "react";
+import { ReactNode } from "react";
 
 interface LiveCasinoCardProps {
   name: string;
@@ -10,20 +10,13 @@ interface LiveCasinoCardProps {
 }
 
 const LiveCasinoCard = ({ name, provider, amount, image, imageSrc }: LiveCasinoCardProps) => {
-  const [imageError, setImageError] = useState(false);
-
   return (
     <div className="flex-shrink-0 w-56 sm:w-60 md:w-64 group cursor-pointer" onClick={() => window.dispatchEvent(new Event("open-register"))}>
       <div className="relative rounded-xl shadow-card hover:shadow-glow-red transition-transform duration-300 origin-center hover:scale-[1.02] overflow-hidden">
         {/* Top banner filled with image */}
         <div className="relative h-40 sm:h-44 md:h-48">
-          {imageSrc && !imageError ? (
-            <img 
-              src={imageSrc} 
-              alt={name} 
-              className="absolute inset-0 w-full h-full object-cover object-top"
-              onError={() => setImageError(true)}
-            />
+          {imageSrc ? (
+            <img src={imageSrc} alt={name} className="absolute inset-0 w-full h-full object-cover object-top" />
           ) : (
             <div className="absolute inset-0 bg-blue-card/50 flex items-center justify-center text-6xl">{image}</div>
           )}

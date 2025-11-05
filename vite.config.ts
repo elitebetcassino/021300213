@@ -5,7 +5,6 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
-  base: "/",
   server: {
     host: "::",
     port: 8080,
@@ -16,21 +15,4 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  build: {
-    rollupOptions: {
-      output: {
-        manualChunks: undefined,
-      },
-    },
-    commonjsOptions: {
-      include: [/lucide-react/, /node_modules/],
-    },
-  },
-  optimizeDeps: {
-    include: ["lucide-react"],
-    esbuildOptions: {
-      target: 'es2020',
-    },
-  },
-  assetsInclude: ["**/*.svg"],
 }));
